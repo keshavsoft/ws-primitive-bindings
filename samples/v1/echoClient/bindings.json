@@ -1,0 +1,19 @@
+[
+  {
+    "event": "open",
+    "action": "onConnected"
+  },
+  {
+    "event": "message",
+    "action": "onMessageReceived"
+  },
+  {
+    "event": "close",
+    "action": "onDisconnected"
+  },
+  {
+    "event": "error",
+    "action": "onError"
+  }
+]
+

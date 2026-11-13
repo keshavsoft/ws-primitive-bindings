@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ws-primitive-bindings (v1) — Interactive Samples</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .hero-banner {
+      background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 100%);
+      color: #ffffff;
+      padding: 48px 0;
+      margin-bottom: 36px;
+    }
+    .sample-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .sample-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+      border-color: #38bdf8;
+      color: inherit;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero-banner shadow-sm">
+    <div class="container" style="max-width: 960px;">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <div>
+          <span class="badge bg-warning text-dark mb-2">v1 &bull; Declarative Socket Bindings</span>
+          <h1 class="display-6 fw-bold mb-2">ws-primitive-bindings</h1>
+          <p class="lead mb-0 text-white opacity-75">
+            Single-socket event listening driven by <code>bindings.json</code> + <code>actions.js</code> + <code>bindWs()</code>.
+          </p>
+        </div>
+        <div class="d-flex gap-2">
+          <a href="../../docs/index.html" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-book me-1"></i> Documentation
+          </a>
+          <a href="../../index.html" class="btn btn-warning btn-sm fw-bold">
+            <i class="bi bi-house me-1"></i> Hub
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container pb-5" style="max-width: 960px;">
+
+    <!-- Architecture Callout -->
+    <div class="card shadow-sm border-0 p-4 mb-4 bg-white">
+      <div class="d-flex align-items-center gap-3 mb-2">
+        <i class="bi bi-broadcast text-primary fs-3"></i>
+        <div>
+          <h2 class="h5 fw-bold text-dark mb-0">Declarative WebSocket Contract</h2>
+          <small class="text-muted">No switch statements &bull; Safe JSON decoding &bull; Type-based message routing</small>
+        </div>
+      </div>
+      <p class="text-secondary small mb-3">
+        <code>ws-primitive-bindings</code> standardizes WebSocket handling into three clean, testable files:
+      </p>
+      <div class="row g-2 text-center small">
+        <div class="col-md-4">
+          <div class="p-2 border rounded bg-light">
+            <div class="fw-bold text-primary mb-1">1. bindings.json</div>
+            <div class="text-muted"><code>event</code>, optional <code>type</code>, <code>action</code></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-2 border rounded bg-light">
+            <div class="fw-bold text-success mb-1">2. actions.js</div>
+            <div class="text-muted"><code>(payload, event, ws) =&gt; { ... }</code></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-2 border rounded bg-light">
+            <div class="fw-bold text-warning mb-1">3. index.js</div>
+            <div class="text-muted"><code>bindWs(socket, bindings, actions)</code></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Samples Grid -->
+    <div class="row g-4 mb-5">
+
+      <!-- Sample 1: Live Display -->
+      <div class="col-md-6">
+        <a href="./liveDisplay/index.html" class="sample-card p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <span class="badge bg-success">Live Socket</span>
+            <i class="bi bi-display text-primary fs-3"></i>
+          </div>
+          <h2 class="h5 fw-bold text-dark mb-2">Live Appointment Display</h2>
+          <p class="small text-muted mb-4 flex-grow-1">
+            Connects live to <code>/ws?role=display-v17</code>, receives snapshots, and routes <code>type: "state"</code> messages directly to display handlers.
+          </p>
+          <div class="d-flex align-items-center text-primary fw-bold small">
+            <span>Launch Live Display Sample</span>
+            <i class="bi bi-arrow-right ms-2"></i>
+          </div>
+        </a>
+      </div>
+
+      <!-- Sample 2: Echo Client -->
+      <div class="col-md-6">
+        <a href="./echoClient/index.html" class="sample-card p-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <span class="badge bg-info text-dark">Interactive Tool</span>
+            <i class="bi bi-chat-dots text-info fs-3"></i>
+          </div>
+          <h2 class="h5 fw-bold text-dark mb-2">Interactive Socket Client</h2>
+          <p class="small text-muted mb-4 flex-grow-1">
+            Send custom JSON payloads and observe real-time message stream handling mapped through <code>bindings.json</code>.
+          </p>
+          <div class="d-flex align-items-center text-info fw-bold small">
+            <span>Launch Echo Client</span>
+            <i class="bi bi-arrow-right ms-2"></i>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>
+

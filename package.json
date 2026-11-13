@@ -1,0 +1,22 @@
+{
+  "name": "ws-primitive-bindings",
+  "version": "1.0.0",
+  "description": "Declarative, instruction-driven WebSocket event bindings",
+  "type": "module",
+  "license": "MIT",
+  "author": "KeshavSoft",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/v1.test.js"
+  },
+  "devDependencies": {}
+}
+

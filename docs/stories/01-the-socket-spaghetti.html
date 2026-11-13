@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1: The WebSocket Spaghetti — ws-primitive-bindings</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+    }
+    .story-hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 100%);
+      color: #fff;
+      padding: 40px 0;
+    }
+    pre {
+      background-color: #0f172a;
+      color: #e2e8f0;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      overflow-x: auto;
+    }
+    code:not(pre code) {
+      background-color: #e2e8f0;
+      color: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="story-hero shadow-sm mb-4">
+    <div class="container" style="max-width: 900px;">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+          <span class="badge bg-danger mb-2">Chapter 1 of 3 &bull; The Problem</span>
+          <h1 class="h3 fw-bold mb-1">The WebSocket Spaghetti Trap</h1>
+          <p class="text-white small mb-0">Why imperative onmessage handlers break in production real-time applications.</p>
+        </div>
+        <a href="../index.html" class="btn btn-outline-light btn-sm">
+          <i class="bi bi-arrow-left me-1"></i> Story Hub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container pb-5" style="max-width: 900px;">
+
+    <section class="card shadow-sm border-0 p-4 mb-4">
+      <h2 class="h5 fw-bold text-dark mb-3">
+        <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i> The Typical WebSocket Handler
+      </h2>
+      <p>
+        In most frontend projects, handling WebSocket messages turns into an ever-growing block of imperative code:
+      </p>
+
+      <pre><code>// The typical anti-pattern:
+socket.onmessage = (event) => {
+  try {
+    const msg = JSON.parse(event.data);
+    if (msg.type === "state") {
+      updateDisplay(msg.data);
+    } else if (msg.type === "announcement") {
+      playAudio(msg.audio);
+    } else if (msg.type === "error") {
+      showError(msg.error);
+    } else if (msg.type === "ping") {
+      socket.send(JSON.stringify({ type: "pong" }));
+    }
+  } catch (err) {
+    console.error("Message parse error", err);
+  }
+};</code></pre>
+
+      <p class="text-muted small mb-0">
+        As the app grows, this handler becomes a dumping ground mixing networking, JSON serialization, message routing, and UI manipulation in one monolithic file.
+      </p>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <a href="../index.html" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i> Overview
+      </a>
+      <a href="./02-declarative-socket-bindings.html" class="btn btn-primary fw-bold">
+        Chapter 2: Declarative Socket Bindings &rarr;
+      </a>
+    </div>
+
+  </main>
+
+</body>
+
+</html>
+
